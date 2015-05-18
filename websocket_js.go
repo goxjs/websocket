@@ -9,23 +9,23 @@ import (
 	"github.com/gopherjs/websocket"
 )
 
-type Conn struct {
-	conn *websocket.Conn
+type conn struct {
+	ws *websocket.Conn
 }
 
-func (c Conn) Read(b []byte) (n int, err error)   { return c.conn.Read(b) }
-func (c Conn) Write(b []byte) (n int, err error)  { return c.conn.Write(b) }
-func (c Conn) Close() error                       { return c.conn.Close() }
-func (c Conn) LocalAddr() net.Addr                { return c.conn.LocalAddr() }
-func (c Conn) RemoteAddr() net.Addr               { return c.conn.RemoteAddr() }
-func (c Conn) SetDeadline(t time.Time) error      { return c.conn.SetDeadline(t) }
-func (c Conn) SetReadDeadline(t time.Time) error  { return c.conn.SetReadDeadline(t) }
-func (c Conn) SetWriteDeadline(t time.Time) error { return c.conn.SetWriteDeadline(t) }
+func (c conn) Read(b []byte) (n int, err error)   { return c.ws.Read(b) }
+func (c conn) Write(b []byte) (n int, err error)  { return c.ws.Write(b) }
+func (c conn) Close() error                       { return c.ws.Close() }
+func (c conn) LocalAddr() net.Addr                { return c.ws.LocalAddr() }
+func (c conn) RemoteAddr() net.Addr               { return c.ws.RemoteAddr() }
+func (c conn) SetDeadline(t time.Time) error      { return c.ws.SetDeadline(t) }
+func (c conn) SetReadDeadline(t time.Time) error  { return c.ws.SetReadDeadline(t) }
+func (c conn) SetWriteDeadline(t time.Time) error { return c.ws.SetWriteDeadline(t) }
 
-func Dial(url, _ string) (Conn, error) {
-	c, err := websocket.Dial(url)
+func Dial(url, _ string) (net.Conn, error) {
+	ws, err := websocket.Dial(url)
 	if err != nil {
-		return Conn{}, err
+		return nil, err
 	}
-	return Conn{conn: c}, nil
+	return conn{ws: ws}, nil
 }
