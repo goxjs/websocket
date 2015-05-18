@@ -31,5 +31,12 @@ func Dial(url, origin string) (net.Conn, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	// Why is this exported field undocumented?
+	//
+	// It needs to be set to websocket.BinaryFrame so that
+	// the Write method sends bytes as binary rather than text frames.
+	ws.PayloadType = websocket.BinaryFrame
+
 	return conn{ws: ws}, nil
 }
