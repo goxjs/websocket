@@ -7,10 +7,10 @@ Installation
 
 ```bash
 go get -u github.com/goxjs/websocket
-go get -u -d -tags=js github.com/goxjs/websocket
+GOARCH=js go get -u -d github.com/goxjs/websocket
 ```
 
 License
 -------
 
-- [MIT License](http://opensource.org/licenses/mit-license.php)
+-	[MIT License](https://opensource.org/licenses/mit-license.php)
