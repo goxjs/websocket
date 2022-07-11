@@ -8,7 +8,7 @@ Package websocket is a Go cross-platform implementation of a client for the WebS
 Installation
 ------------
 
-```bash
+```sh
 go get github.com/goxjs/websocket
 ```
 
